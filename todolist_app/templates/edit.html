@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Edit -Task Manager</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+    </br>
+
+    {% if taskobj.owner == request.user%}
+        <form method="POST" class="row row-cols-lg-auto align-items-center">
+            {% csrf_token %}
+            <label class="col-lg-4"></label>
+            <input type="text" class="form-contro col-lg-4" name="task" placeholder="{{taskobj.task}}" value="{{taskobj.task}}">
+            <input type="hidden" name="done" value="{{taskobj.done}}">
+            <button type="submit" class="btn btn-primary col-lg-2">Update Task</button>
+        </form>
+    {% else%}
+      <p>Fuck you hacker!</p>
+    {% endif %}
+    </div>
+{% endblock content%}
